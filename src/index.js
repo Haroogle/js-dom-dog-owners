@@ -23,7 +23,33 @@ data.forEach((dogJSObject) => {
     dogPic.setAttribute("src", dogJSObject.image);
     dogContainer.appendChild(dogPic);
   }
+  function dogDescription(Desc) {
+    const dogContainer = document.querySelector(".main__dog-section");
+    const dogBio = document.createElement("div");
+    dogContainer.appendChild(dogBio);
+    const title = document.createElement("h3");
+    title.innerText = "Bio"; 
+    dogBio.appendChild (title)
+    const p = document.createElement("p")
+    p.innerText = dogJSObject.bio
+    dogBio.appendChild (p)
+  }
+
+    function goodBoyButton(goodboy) {
+      const dogContainer = document.querySelector(".main__dog-section__btn")
+      const dogButton = document.createElement("main__dog-section__btn")
+      dogContainer.appendChild(dogButton)
+}
+    
+    
+  
 
   dogsLi.addEventListener("click", handleDogselectName);
   dogsLi.addEventListener("click", insertDogPic);
+  dogsLi.addEventListener("click", dogDescription);
+  dogsLi.addEventListener("click", goodBoyButton);
+
+
 });
+
+
