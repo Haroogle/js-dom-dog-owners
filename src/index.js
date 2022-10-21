@@ -14,7 +14,26 @@ data.forEach((dogJSObject) => {
   const dogButtonSection = document.createElement("div");
   const addDogForm = document.querySelector(".dogs-list__button--add");
   const submit = document.createElement("input");
+  addDogForm.addEventListener("click", createform);
+  const newLi = document.createElement("li");
+  submit.addEventListener("click", (event) => {
+    event.preventDefault();
+    const name = document.getElementById("name");
+    const image = document.getElementById("image");
+    const bio = document.getElementById("bio");
+    const newDog = {
+      id: data.length + 1,
+      name: name.value,
+      image: image.value,
+      bio: bio.value,
+      isGoodDog: true,
+    };
+    data.push(newDog);
 
+    newLi.setAttribute("class", "dogs-list__button");
+    dogList.appendChild(newLi);
+    newLi.innerHTML = newDog.name;
+  });
   // Add Dogs name to the card
   function handleDogselectName(dogName) {
     dogContainer.innerHTML = "";
@@ -45,6 +64,7 @@ data.forEach((dogJSObject) => {
   function goodBoyButton(goodboy) {
     dogButtonSection.setAttribute("class", "main__dog-section__btn");
     dogContainer.appendChild(dogButtonSection);
+    dogButtonSection.innerHTML = " ";
     const p = document.createElement("p");
     const em = document.createElement("em");
     em.innerText = "Is naughty?";
@@ -109,8 +129,11 @@ data.forEach((dogJSObject) => {
     submit.setAttribute("value", "Let's add a dog!");
     submit.setAttribute("class", "form__button");
     dogForm.appendChild(submit);
-    dogsLi;
   }
+  newLi.addEventListener("click", handleDogselectName);
+  newLi.addEventListener("click", insertDogPic);
+  newLi.addEventListener("click", dogDescription);
+  newLi.addEventListener("click", goodBoyButton);
 
   dogsLi.addEventListener("click", handleDogselectName);
   dogsLi.addEventListener("click", insertDogPic);
@@ -120,20 +143,5 @@ data.forEach((dogJSObject) => {
     dogJSObject.isGoodDog = !dogJSObject.isGoodDog;
     dogButtonSection.innerHTML = " ";
     goodBoyButton(dogJSObject);
-  });
-  addDogForm.addEventListener("click", createform);
-  submit.addEventListener("click", (event) => {
-    event.preventDefault();
-    const name = document.getElementById("name");
-    const image = document.getElementById("image");
-    const bio = document.getElementById("bio");
-    const newDog = {
-      id: data.length + 1,
-      name: name.value,
-      image: image.value,
-      bio: bio.value,
-      isGoodDog: true,
-    };
-    data.push(newDog);
   });
 });
